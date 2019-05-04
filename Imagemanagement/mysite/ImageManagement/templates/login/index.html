@@ -1,0 +1,59 @@
+{% extends 'login/base.html' %}
+{% block title %}Main page{% endblock %}
+{% block content %}
+    {% if request.session.is_login %}
+    <h1>Hello,{{ request.session.user_name }}！Welcome back！</h1>
+        <h2>You can upload your own images.</h2>
+        <form method="POST" enctype="multipart/form-data">
+        <div>
+            <div class = "full">
+                Please upload image:
+            {% csrf_token %}
+            <input class = "full" type="file" name="img">
+            </div>
+            <div class = "full">
+                Please select strain:
+                <select name="strain">
+                    <option value = "0">--Please select--</option>
+                    {% for stage in stage_list %}
+                        <option value ="{{ stage.strain_genotype }}">{{ stage.strain_genotype }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="full">
+                Please select worm stage:
+                <select name="worm_stage", id="id_stage">
+                    <option value = "0">--Please select--</option>
+                    {% for stage in stage_list %}
+                        <option value ="{{ stage.worm_stage }}">{{ stage.worm_stage }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="full">
+                Please input image date:
+                <input name="date">
+            </div>
+        <div class = "full">
+                Please select sex:
+                <select name="sex">
+                    <option value = "0">--Please select--</option>
+                    <option value = "Female">F</option>
+                    <option value="Male">M</option>
+                </select>
+            </div>
+
+        <div class="full">
+            <button type="submit">Upload</button>
+        </div>
+        </div>
+        </form>
+         <div class="full">
+             {% for img in imgs %}
+                 <img src="{{ img.img.url }}" />
+            </div>
+        {% endfor %}
+    {% else %}
+    <h1>You didn't login, you can only visit the main page！</h1>
+    {% endif %}
+
+{% endblock %}

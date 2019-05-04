@@ -1,0 +1,60 @@
+{% extends 'login/base.html' %}
+{% load staticfiles %}
+{% block title %}Main page{% endblock %}
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'CSS/login.css' %}">
+        <body id="body" class="">
+    <script>
+var winWidth = document.body.clientWidth;
+if (winWidth <=1180){
+    body.className="grid-960";
+}else  if (winWidth<= 1410){
+    body.className="grid-1180";
+}else if (winWidth>1410){
+    body.className="grid-1410";
+}else {
+    alert("do not know!");
+}
+</script>
+
+    <div class="container-fluid no-padding">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <div class="tab">
+                <-- Show the strains and images-->
+                    {% if flag %}
+                        <button class="tab-left" onclick="window.location.replace('/index/strains/{{ strain }}/')">{{ output }} >> {{ selected_stage }}</button>
+                        <button class="tab-right" onclick="downloadAll()">Download Collection</button>
+                    {% else %}
+                        <button class="tab-left"><span>{{ output }}</span></button>
+                        {% for i in stages %}
+                            <button class="tab-right" onclick="window.location.replace('/index/strains/{{ strain }}/{{ i }}/')">{{ i }}</button>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            <div class="activity" id="activity-slide">
+                <a href="javascript:void(0)" class="pg_left ps_pre"></a>
+                <a href="javascript:void(0)" class="pg_right ps_next" ></a>
+                <ul class="clearfix">
+                     {% for key, value in images.items %}
+                         {% for imageid in value %}
+                               <a class="imglink" href="/index/strains/{{ strain }}/{{ key }}/{{ imageid }}" style="text-decoration:none;" onclick="switchimage({{ imageid }})">
+                                <img class="thunmbnail" src="https://omero.ebb.gatech.edu/webgateway/render_thumbnail/{{ imageid }}/"></a>
+                             {% endfor %}
+                    {% endfor %}
+      </ul>
+</div>
+
+            </div>
+
+        </div>
+    </div>
+    </body>
+
+{% endblock %}
+
+
+
+

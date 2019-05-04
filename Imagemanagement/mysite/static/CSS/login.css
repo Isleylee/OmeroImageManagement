@@ -1,0 +1,306 @@
+body {
+  background-color: #eee;
+}
+.form-login {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-login .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-login .form-control:focus {
+  z-index: 2;
+}
+.form-login input[type="text"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-login input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+
+img {
+    border: 1px solid #ddd; /* Gray border */
+    border-radius: 4px;  /* Rounded border */
+    padding: 5px; /* Some padding */
+    width: 150px; /* Set a small width */
+}
+
+/* Add a hover effect (blue shadow) */
+img:hover {
+    box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}
+
+
+/* Style the tab */
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button:not(.tab-right) {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    padding: 14px 16px;
+    transition: 0.3s;
+}
+
+.tab-right {
+    background-color: inherit;
+    float: right;
+    border: none;
+    outline: none;
+    padding: 14px 16px;
+    transition: 0.3s;
+}
+
+.tab-left {
+    background-color: inherit;
+    float: left;
+    border: 3px;
+    outline: 5px;
+    padding: 14px 16px;
+    transition: 0.3s;
+}
+
+.tab-center {
+    background-color: inherit;
+    border: none;
+    outline: none;
+    padding: 14px 16px;
+    transition: 0.3s;
+    overflow: hidden;
+    text-align: center;
+    display: inline-block;
+    margin: 10px 10px 0 0;
+
+}
+/* Change background color of buttons on hover */
+.tab button:hover {
+    cursor: pointer;
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab-clicked {
+    background-color: #ccc;
+}
+
+.tab a {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: default;
+    padding: 14px 16px;
+    transition: 0.3s;
+    pointer-events: none;
+}
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+    background-color: #ddd;
+}
+.showtab {
+    display: block;
+}
+.thumbnail {
+    border: 1px solid #ddd; /* Gray border */
+    border-radius: 4px;  /* Rounded border */
+    padding: 5px; /* Some padding */
+    width: 5vw; /* Set a small width */
+
+    -webkit-user-select: none; /* Safari 3.1+ */
+    -moz-user-select: none; /* Firefox 2+ */
+    -ms-user-select: none; /* IE 10+ */
+    user-select: none; /* Standard syntax */
+}
+
+/* Add a hover effect (blue shadow) */
+.thumbnail:hover {
+    box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}
+.imglink {
+    text-decoration: none;
+    display: inline-block;
+    padding: 8px 16px;
+}
+
+.imglink:hover {
+    background-color: #ddd;
+    color: black;
+}
+.imglibrary {
+    padding: 6px 12px;
+    border: 1px solid #ccc;border-top: none;
+    background-color: #ddd;text-align:center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hideitem {
+    display: none;
+}
+.arrow {
+    background-color: #f1f1f1;
+    color: black;
+
+    -webkit-user-select: none; /* Safari 3.1+ */
+    -moz-user-select: none; /* Firefox 2+ */
+    -ms-user-select: none; /* IE 10+ */
+    user-select: none; /* Standard syntax */
+}
+
+.arrow-disabled {
+    background-color: #C0C0C0;
+    pointer-events: none;
+    color: black;
+
+    -webkit-user-select: none; /* Safari 3.1+ */
+    -moz-user-select: none; /* Firefox 2+ */
+    -ms-user-select: none; /* IE 10+ */
+    user-select: none; /* Standard syntax */
+}
+
+.round {
+    border-radius: 50%;
+}
+
+.btn-group .dropdown-menu a{
+    color:#fff;
+}
+.btn-group-primary .dropdown-menu {
+  background-color: #3784c5 !important;
+}
+.btn-group-primary .dropdown-menu li > a:hover,
+.btn-group-primary .dropdown-menu li > a:focus {
+  background-color: #428bca !important;
+}
+.btn-group-success .dropdown-menu {
+  background-color: #51b351 !important;
+}
+.btn-group-success .dropdown-menu li > a:hover,
+.btn-group-success .dropdown-menu li > a:focus {
+  background-color: #5cb85c !important;
+}
+.btn-group-info .dropdown-menu {
+  background-color: #4ebbdb !important;
+}
+.btn-group-info .dropdown-menu option > a:hover,
+.btn-group-info .dropdown-menu option > a:focus {
+  background-color: #5bc0de !important;
+}
+.btn-group-warning .dropdown-menu {
+  background-color: #efa640 !important;
+}
+.btn-group-warning .dropdown-menu li > a:hover,
+.btn-group-warning .dropdown-menu li > a:focus {
+  background-color: #f0ad4e !important;
+}
+.btn-group-danger .dropdown-menu {
+  background-color: #d64742 !important;
+}
+.btn-group-danger .dropdown-menu li > a:hover,
+.btn-group-danger .dropdown-menu li > a:focus {
+  background-color: #d9534f !important;
+}
+.divider {
+    border-color: #000;
+    border-style: solid;
+    border-width: 0 0 1px;
+    height: 10px;
+    line-height: 20px;
+    text-align:center;
+}
+
+.divider span {
+    background-color: #FFF;
+    display: inline-block;
+    padding: 0 10px;
+    min-height: 20px;
+    min-width: 10%;
+}
+
+@charset "utf-8";
+body, div, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, code, form, fieldset, legend, button, textarea, table, tbody, tfoot, thead, th, td, article, aside, dialog, figure, footer, header, hgroup, menu, nav, section, time, mark, audio, video { margin: 0; padding: 0; outline:nonebackground:transparent;
+}
+article, aside, dialog, figure, footer, header, hgroup, nav, section { display: block; }
+body, button, input, select, textarea { font: 12px/1.5 arial, \5b8b\4f53, sans-serif; }
+h1, h2, h3, h4, h5, h6, button, input, select, textarea { font-size: 100%; outline: none }
+address, cite, dfn, em, var { font-style: normal; }
+code, kbd, pre, samp { font-family: courier new, courier, monospace; }
+small { font-size: 12px; }
+ul, ol, li { list-style: none; }
+img { border: none; }
+a { text-decoration: none; outline: thin none; }
+a:hover { text-decoration: underline; }
+table { border-collapse: collapse; border-spacing: 0; }
+.clear { clear: both; }
+.clearfix:after { visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0; }
+html { -webkit-text-size-adjust: none; }
+body { font: 12px/1.5 \5FAE\8F6F\96C5\9ED1, tahoma, arial, \5b8b\4f53, sans-serif; }
+
+
+
+
+/*热门活动*/
+.grid-960 .section { width: 960px;  margin: 0 auto;background-color:#eaf2ff; }
+.grid-1180 .section { width: 1180px;  margin: 0 auto;background-color:#eaf2ff;}
+.grid-1410 .section { width: 1410px;  margin: 0 auto;background-color:#eaf2ff;}
+
+
+.viewall:hover{text-decoration:none;}
+.viewall{font-size:18px;;color:#fff;text-shadow: 0 3px #df2828, 3px 0 #df2828;float:right;}
+
+
+
+.grid-960 .contentwrap{width:800px;margin:0 auto;}
+.grid-1180 .contentwrap{width:980px;margin:0 auto;}
+.grid-1410 .contentwrap{width:1180px;margin:0 auto;}
+
+.grid-960 .activity{width:826px;height:152px;overflow:hidden;margin:0 auto;position:relative;}
+.grid-1180 .activity{width:1020px;height:192px;overflow:hidden;margin:0 auto;position:relative;}
+.grid-1410 .activity{width:1230px;height:232px;overflow:hidden;margin:0 auto;position:relative;}
+
+.grid-960 .activity ul{height:152px;overflow:hidden;}
+.grid-1180 .activity ul{height:192px;overflow:hidden;}
+.grid-1410 .activity ul{height:232px;overflow:hidden;}
+
+.activity li img{display:block;width:100%;height:100%;}
+.activity li{display:block;float:left;}
+
+.grid-960 .activity li{width:250px;height:125px;overflow:hidden;margin:12px;}
+.grid-1180 .activity li{width:300px;height:150px;overflow:hidden;margin:20px;}
+.grid-1410 .activity li{width:360px;height:180px;overflow:hidden;margin:25px;}
+/*js切换*/
+.pg_left,.pg_right {position: absolute;z-index: 999;width: 35px;height: 50px;overflow: hidden;}
+.pg_right {background: transparent url(../images/right.png) no-repeat scroll 5px 7px;}
+.pg_right:hover {background: transparent url(../images/hover.png) no-repeat scroll 0 0;}
+.grid-960 .pg_right{top:75px;right:16px;margin-top:-25px;}
+.grid-1180 .pg_right{top:95px;right:20px;margin-top:-25px;}
+.grid-1410 .pg_right{top:115px;right:25px;margin-top:-25px;}
+
+.pg_left {background: transparent url(../images/left.png) no-repeat scroll 5px 7px;}
+.pg_left:hover {background: transparent url(../images/hover.png) no-repeat scroll right 0;}
+.grid-960 .pg_left{top:75px;left:13px;margin-top:-25px;}
+.grid-1180 .pg_left{top:95px;left:20px;margin-top:-25px;}
+.grid-1410 .pg_left{top:115px;left:25px;margin-top:-25px;}

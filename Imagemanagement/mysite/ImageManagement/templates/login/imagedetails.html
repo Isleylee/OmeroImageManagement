@@ -1,0 +1,281 @@
+{% extends 'login/base.html' %}
+{% load staticfiles %}
+{% block title %}Main page{% endblock %}
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'CSS/login.css' %}">
+        <body id="body" class="">
+    <script>
+var winWidth = document.body.clientWidth;
+if (winWidth <=1180){
+    body.className="grid-960";
+}else  if (winWidth<= 1410){
+    body.className="grid-1180";
+}else if (winWidth>1410){
+    body.className="grid-1410";
+}else {
+    alert("do not know!");
+}
+</script>
+
+    <div class="container-fluid no-padding">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <div class="tab">
+                    {% if flag %}
+                        <button class="tab-left" onclick="window.location.replace('/index/strains/{{ strain }}/')">{{ output }} >> {{ selected_stage }} >> {{ image }}</button>
+                        <button class="tab-right" onclick="downloadAll()">Download Collection</button>
+                    {% else %}
+                        <button class="tab-left"><span>{{ output }}</span></button>
+                        {% for i in stages %}
+                            <button class="tab-right" onclick="window.location.replace('/index/strains/{{ strain }}/{{ i }}/')">{{ i }}</button>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            <div class="activity" id="activity-slide">
+                <a href="javascript:void(0)" class="pg_left ps_pre"></a>
+                <a href="javascript:void(0)" class="pg_right ps_next" ></a>
+                <ul class="clearfix">
+
+                    <a class="imglink" style="text-decoration:none;" >
+                        <img class="thunmbnail" src="https://omero.ebb.gatech.edu/webgateway/render_thumbnail/{{ image }}/"></a>
+                </ul>
+            </div>
+
+            </div>
+
+        </div>
+    </div>
+       <div class="row">
+            	<div class="col-md-1"></div>
+                <div class="col-md-5">
+                    <div class="tab">
+                        <a>Image Viewer</a>
+                        <button class="tab-right" onclick="imgdownload()">Download</button>
+                        <button class="tab-right" onclick="fullview()">Full Screen</button>
+                    </div>
+                    <iframe frameborder="0" width=100% height=750 src="https://omero.ebb.gatech.edu/webclient/img_detail/{{ image }}/" id="omeroviewport" name="omeroviewport"></iframe>
+                </div>
+				<div class="col-md-5">
+		            <div class="tab">
+		                <a>Image Information</a>
+		                <button class="tab-right" onclick="switchTab('acq')" id="acqtab">Acquisition</button>
+		                <button class="tab-right" onclick="switchTab('worm')" id="wormtab">The Worm</button>
+		            </div>
+		            <!-- Tab content -->
+
+		        </div>
+			    <div class="col-md-1"></div>
+			</div>
+		    <div><br></div>
+
+    </body>
+
+    <script type="text/javascript">
+            	var omero = 'https://omero.ebb.gatech.edu/';
+            	var img = 'webclient/img_detail/';
+            	var download = 'webgateway/archived_files/download/';
+
+            	var downloadall = 'https://omero.ebb.gatech.edu/webclient/download_placeholder/?ids={{ allImage }}';
+            	var tab;
+            	var imageid;
+            	switchimage('{{ image }}');
+            	function switchimage(newimg) {
+            		if (newimg == imageid) return;
+            		closeTab('worm');
+            		closeTab('acq');
+            		imageid = newimg;
+            		showTab('worm');
+            		$('#omeroviewport').attr('src', omero + img + newimg);
+            	}
+            	function fullview() {
+            		window.open(omero + img + imageid, '_blank', 'width=1000');
+            	}
+            	function imgdownload() {
+            		window.open(omero + download + imageid, '_blank');
+            	}
+            	function downloadAll() {
+            		window.open(downloadall, '_blank');
+            	}
+            	function closeTab(newtab) {
+            		$('#' + newtab + '-' + imageid).attr('class', 'tabcontent');
+            		$('#' + newtab + 'tab').attr('class', 'tab-right');
+            	}
+            	function showTab(newtab) {
+            		tab = newtab;
+            		$('#' + newtab + '-' + imageid).attr('class', 'tabcontent showtab');
+            		$('#' + newtab + 'tab').attr('class', 'tab-right active');
+            	}
+            	function switchTab(newtab) {
+            		if (tab == newtab) return;
+            		closeTab(tab);
+            		showTab(newtab);
+            	}
+            </script>
+
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+<script>
+
+(function($){
+    $.photolist=function(a){
+        var w_li = a.find("li").width();
+        var h_li = a.find("li").height();
+        var margin_li=parseInt(a.find("li").css("marginLeft"));
+        var now = 0;
+        var num = 0;
+        var addli = 0;
+        var lisize = a.find("ul li").size();
+        var htmlall = a.find("ul").html();
+
+        /*
+        var w_body = $("body").width();
+        if(w_body <=1170){
+            var num = 3;
+        }else if(w_body<= 1380){
+            var num = 4;
+        }else if(w_body>1380){
+            var num = 5;
+        }
+        */
+        var num=3;
+
+        var reminder=lisize%num;
+        if(lisize%num!=0){addli = num-reminder;}
+        else{addli = 0;}
+        addlist();
+
+        photoscroll();
+
+        $(window).resize(function(){
+            //location.reload();
+            now = 0;
+            addli = 0;
+            a.find("ul").html(htmlall);//html内容还原初始值
+            a.find(".ps_next").show();//按钮样式初始化
+            a.find(".ps_pre").hide();
+            //判断每次滚动数量
+            /*
+            var w_body = $("body").width();
+            if(w_body <=1170){
+                var num = 3;
+            }else if(w_body<= 1380){
+                var num = 4;
+            }else if(w_body>1380){
+                var num = 5;
+            }
+            */
+            var num=3;
+            //判断需要添加的li节点数量
+            var reminder=lisize%num;
+            if(lisize%num!=0){addli = num-reminder;}
+            else{addli = 0;}
+            addlist();
+            w_li = a.find("li").width();
+            margin_li=parseInt(a.find("li").css("marginLeft"));
+            a.find("ul").css({"width":(w_li+margin_li*2)*(lisize+addli)});
+            a.find("ul").animate({"margin-left":0});//ul位置还原
+            btnshow(now,parseInt((lisize+addli)/num),lisize,num);
+        });
+
+
+        function addlist(){
+            for(i=0;i<addli;i++){
+                var html = a.find("ul li").eq(i).html();
+                a.find("ul").append("<li>"+html+"</li>");
+            }
+            a.find("ul").css({"width":(w_li+margin_li*2)*(lisize+addli)});
+            //console.log(a.find("ul li").size());
+        }
+        function photoscroll(){
+            a.find(".ps_pre").on("click",function(){//console.log(num);
+                now--;
+                if(now >= 0){
+                    a.find("ul").animate({"margin-left":-now*num*(w_li+margin_li*2)});
+                    btnshow(now,parseInt((lisize+addli)/num),lisize,num);
+                }
+            });
+
+            a.find(".ps_next").on("click",function(){//console.log(num);
+                now++;
+                if(now < (lisize+addli)/num){
+                    a.find("ul").animate({"margin-left":-now*num*(w_li+margin_li*2)});
+                    btnshow(now,parseInt((lisize+addli)/num),lisize,num);
+                }
+            });
+            btnshow(now,parseInt((lisize+addli)/num),lisize,num);
+        }
+        function btnshow(now,c,d,e){
+            if(d<=e){
+                a.find(".ps_next").hide();
+                a.find(".ps_pre").hide();
+            }else if(now==0){
+                a.find(".ps_next").show();
+                a.find(".ps_pre").hide();
+            }else if(now==c-1){
+                a.find(".ps_next").hide();
+                a.find(".ps_pre").show();
+            }else{
+                a.find(".ps_next").show();
+                a.find(".ps_pre").show();
+            }
+        }
+
+    }
+})(jQuery);
+$.photolist($("#activity-slide"));
+</script>
+
+    <script type="text/javascript">
+    var currcat;
+    var page = 0;
+
+
+    switchCategory('{{ selected_stage }}');
+
+    function switchCategory(cat){
+        if(cat == currcat) return;
+        $('#' + currcat).addClass('hideitem');
+        $('#' + currcat + '-' + page).addClass('hideitem');
+        currcat= cat;
+        $('#' + cat).removeClass('hideitem');
+        page = 0;
+        $('#' + cat +'-' +page).removeClass('hideitem');
+        $('#' + currcat + '-' + page +'img').each(function(){
+            $(this).attr('src', $(this).attr('delayedsrc'));
+        });
+
+        console.log(currcat);
+        $('#currstage').attr('value', currcat);
+    }
+    function offsetR(){
+        $('#' + currcat + '-' + page).addClass('hideitem');
+        page++;
+        if (!$('#' + currcat + '-' + page).length) {
+                page = 0;
+            }
+            $('#' + currcat + '-' + page).removeClass('hideitem');
+            $('#' + currcat + '-' + page + ' img').each(function() {
+                $(this).attr('src', $(this).attr('delayedsrc'));
+            });
+    }
+    function offsetL() {
+        $('#' + currcat + '-' + page).addClass('hideitem');
+            if (page == 0) {
+                var id = $('#' + currcat).children().last().attr('id');
+                page = parseInt(id.substr(id.indexOf('-') + 1));
+            } else {
+                page--;
+            }
+            $('#' + currcat + '-' + page).removeClass('hideitem');
+            $('#' + currcat + '-' + page + ' img').each(function() {
+                $(this).attr('src', $(this).attr('delayedsrc'));
+            });
+    }
+</script>
+
+{% endblock %}
+
+
+
+

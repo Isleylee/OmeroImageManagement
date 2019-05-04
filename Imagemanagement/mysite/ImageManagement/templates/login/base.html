@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	 <title>{% block title %}base{% endblock %}</title>
+	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<!-- This is the base html -->
+<body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#my-nav" aria-expanded="false">
+            <span class="sr-only">Switch navigation bar</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+            <a class = "navbar-brand" > Neuronex</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+
+       <div class="collapse navbar-collapse" id="my-nav">
+          <ul class="nav navbar-nav">
+
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+           <li class="active"><a href="/index/">Main page</a></li>
+              <li ><a onclick=window.open("http://localhost:4080/webclient/login/?url=%2Fwebclient%2F")>Omero</a></li>
+              <li class="dropdown">
+		<a class="dropdown-toggle" data-toggle="dropdown" href="/strain">
+            Image <span class="caret"></span>
+		</a>
+		<ul class="dropdown-menu">
+           {% if strain_list %}
+               {% for strain in strain_list %}
+
+                   <li><a href="/index/strains/{{ strain.strain_genotype }}">{{ strain.strain_genotype }}</a></li>
+               {% endfor %}
+           {% else %}
+               <p>No strains are available.</p>
+           {% endif %}
+		</ul>
+              </li>
+              <li><a href="/index/about">About</a></li>
+              {% if request.session.is_login %}
+                  <li><a href="/logout/">Log out</a></li>
+              {% else %}
+                  <li><a href="/login/">Log in</a></li>
+                  <li><a href="/register/">Register</a></li>
+              {% endif %}
+
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
+
+    {% block content %}{% endblock %}
+
+
+  </body>
+</html>

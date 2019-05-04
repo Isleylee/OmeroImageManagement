@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Forget password</title>
+
+<style>
+.out{
+    width: 500px;
+    height: 900px;
+    margin: 0 auto;
+    margin-top: 100px;
+}
+</style>
+</head>
+
+<-- This is a page for retrieve password through E-mail but it's not implemented in backend yet-->
+<body>
+
+
+    <div class="out">
+        <form method="post" action="{% url 'forget_pwd' %}">
+            <P><span>E-mail：</span><input type="text" name="email"></P>
+            <P><span>Verification code：</span>{{ forget_form.captcha }}</P>
+            {% csrf_token %}
+            <p><input type="submit" value="Send the email"></p>
+        </form>
+        <h1>{{ forget_form.errors }}</h1>
+    </div>
+
+
+</body>
+</html>
