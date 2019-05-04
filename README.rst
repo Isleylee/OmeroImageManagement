@@ -13,10 +13,11 @@ packages in Django:
 pip install mysqlclient
 pip install captcha
 
-run the following commands in terminal 
+run the following commands in terminal
 python manage.py migrate
 python manage.py makemigrations 
 to migrate the project
 
-run the project and visit localhost:8000/index to visit the main page
+run the project and visit localhost:8000/index to visit the main page.
+
 You need to connect with Georgia Tech vpn to see the images
